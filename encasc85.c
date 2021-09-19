@@ -1,6 +1,15 @@
 #include <stdio.h>
 
+
+#define CALC_OFFSET 85
+#define STEP 33
 #define SPACE 50
+
+void changeByte(unsigned int* aprosim, int* byte) {
+    *byte = *aprosim % CALC_OFFSET;
+    *byte += STEP;
+    *aprosim /= CALC_OFFSET;
+}
 
 int main(void) {
 
@@ -43,25 +52,11 @@ int main(void) {
 
             aprosim = ch1 + ch2 + ch3 + ch4;
 
-            byte1 = aprosim % 85;
-            byte1 = byte1 + 33;
-            aprosim = aprosim / 85;
-
-            byte2 = aprosim % 85;
-            byte2 = byte2 + 33;
-            aprosim = aprosim / 85;
-
-            byte3 = aprosim % 85;
-            byte3 = byte3 + 33;
-            aprosim = aprosim / 85;
-
-            byte4 = aprosim % 85;
-            byte4 = byte4 + 33;
-            aprosim = aprosim / 85;
-
-            byte5 = aprosim % 85;
-            byte5 = byte5 + 33;
-            aprosim = aprosim / 85;
+            changeByte(&aprosim, &byte1);
+            changeByte(&aprosim, &byte2);
+            changeByte(&aprosim, &byte3);
+            changeByte(&aprosim, &byte4);
+            changeByte(&aprosim, &byte5);
 
             putchar(byte5);
             putchar(byte4);
@@ -80,25 +75,11 @@ int main(void) {
 
             aprosim = ch1 + ch2 + ch3 + ch4;
 
-            byte1 = aprosim % 85;
-            byte1 = byte1 + 33;
-            aprosim = aprosim / 85;
-
-            byte2 = aprosim % 85;
-            byte2 = byte2 + 33;
-            aprosim = aprosim / 85;
-
-            byte3 = aprosim % 85;
-            byte3 = byte3 + 33;
-            aprosim = aprosim / 85;
-
-            byte4 = aprosim % 85;
-            byte4 = byte4 + 33;
-            aprosim = aprosim / 85;
-
-            byte5 = aprosim % 85;
-            byte5 = byte5 + 33;
-            aprosim = aprosim / 85;
+            changeByte(&aprosim, &byte1);
+            changeByte(&aprosim, &byte2);
+            changeByte(&aprosim, &byte3);
+            changeByte(&aprosim, &byte4);
+            changeByte(&aprosim, &byte5);
 
             putchar(byte5);
             putchar(byte4);
@@ -117,25 +98,11 @@ int main(void) {
 
             aprosim = ch1 + ch2 + ch3 + ch4;
 
-            byte1 = aprosim % 85;
-            byte1 = byte1 + 33;
-            aprosim = aprosim / 85;
-
-            byte2 = aprosim % 85;
-            byte2 = byte2 + 33;
-            aprosim = aprosim / 85;
-
-            byte3 = aprosim % 85;
-            byte3 = byte3 + 33;
-            aprosim = aprosim / 85;
-
-            byte4 = aprosim % 85;
-            byte4 = byte4 + 33;
-            aprosim = aprosim / 85;
-
-            byte5 = aprosim % 85;
-            byte5 = byte5 + 33;
-            aprosim = aprosim / 85;
+            changeByte(&aprosim, &byte1);
+            changeByte(&aprosim, &byte2);
+            changeByte(&aprosim, &byte3);
+            changeByte(&aprosim, &byte4);
+            changeByte(&aprosim, &byte5);
 
             putchar(byte5);
             putchar(byte4);
@@ -152,25 +119,11 @@ int main(void) {
 
         aprosim = ch1 + ch2 + ch3 + ch4;
 
-        byte1 = aprosim % 85;
-        byte1 = byte1 + 33;
-        aprosim = aprosim / 85;
-
-        byte2 = aprosim % 85;
-        byte2 = byte2 + 33;
-        aprosim = aprosim / 85;
-
-        byte3 = aprosim % 85;
-        byte3 = byte3 + 33;
-        aprosim = aprosim / 85;
-
-        byte4 = aprosim % 85;
-        byte4 = byte4 + 33;
-        aprosim = aprosim / 85;
-
-        byte5 = aprosim % 85;
-        byte5 = byte5 + 33;
-        aprosim = aprosim / 85;
+        changeByte(&aprosim, &byte1);
+        changeByte(&aprosim, &byte2);
+        changeByte(&aprosim, &byte3);
+        changeByte(&aprosim, &byte4);
+        changeByte(&aprosim, &byte5);
 
         if (newl == SPACE) {
             printf("\n");

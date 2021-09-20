@@ -24,43 +24,55 @@ void printByteAndCheck(const int *byte, int *newl) {
     checkForNewLine(newl);
 }
 
+unsigned int calculateUnsingedInteger(
+        const int *input_1, const int *input_2,
+        const int *input_3, const int *input_4
+) {
+    int ch1, ch2, ch3, ch4;
+
+    ch1 = *input_1 * (int) pow(256, 3);
+    ch2 = *input_2 * (int) pow(256, 2);
+    ch3 = *input_3 * 256;
+    ch4 = *input_4;
+
+    return ch1 + ch2 + ch3 + ch4;
+}
+
 int main(void) {
 
     unsigned int aprosim = 0;
+    int input_1, input_2, input_3, input_4;
     int byte1 = 0, byte2 = 0, byte3 = 0, byte4 = 0, byte5 = 0;
-    int b1, b2, b3, b4;
-    int ch1, ch2, ch3, ch4;
     int newl = 0;                      // newl holds 50 characters until a new line
 
     printf("<~\n");
 
     while (1) {
-        b1 = getchar();
-        if (b1 == EOF)
-            break;
-        b2 = getchar();
-        b3 = getchar();
-        b4 = getchar();
+        input_1 = getchar();
+        input_2 = getchar();
+        input_3 = getchar();
+        input_4 = getchar();
 
-
-        if (b1 == '\0' && b2 == '\0' && b3 == '\0' && b4 == '\0') {
+        if (input_1 == '\0' && input_2 == '\0' && input_3 == '\0' && input_4 == '\0') {
             putchar('z');
             newl++;
         }
 
+        if (input_1 == EOF) {
+            break;
+        }
 
-        if (b2 == EOF) {        // if one character remains at the end of input
+        if (input_2 == EOF) {        // if one character remains at the end of input
 
-            b2 = '\0';
-            b3 = '\0';      // input is completed with 3 bytes
-            b4 = '\0';
+            input_2 = '\0';
+            input_3 = '\0';      // input is completed with 3 bytes
+            input_4 = '\0';
 
-            ch1 = b1 * (int) pow(256, 3);
-            ch2 = b2 * (int) pow(256, 2);
-            ch3 = b3 * 256;
-            ch4 = b4;
-
-            aprosim = ch1 + ch2 + ch3 + ch4;
+            aprosim = calculateUnsingedInteger(
+                    &input_1,
+                    &input_2,
+                    &input_3,
+                    &input_4);
 
             changeByte(&aprosim, &byte1);
             changeByte(&aprosim, &byte2);
@@ -73,17 +85,16 @@ int main(void) {
             break;
         }
 
-        if (b3 == EOF) {    // if two characters remain at the end of input
+        if (input_3 == EOF) {    // if two characters remain at the end of input
 
-            b3 = '\0';
-            b4 = '\0';      // input is completed with 2 bytes
+            input_3 = '\0';
+            input_4 = '\0';      // input is completed with 2 bytes
 
-            ch1 = b1 * (int) pow(256, 3);
-            ch2 = b2 * (int) pow(256, 2);
-            ch3 = b3 * 256;
-            ch4 = b4;
-
-            aprosim = ch1 + ch2 + ch3 + ch4;
+            aprosim = calculateUnsingedInteger(
+                    &input_1,
+                    &input_2,
+                    &input_3,
+                    &input_4);
 
             changeByte(&aprosim, &byte1);
             changeByte(&aprosim, &byte2);
@@ -97,16 +108,15 @@ int main(void) {
             break;
         }
 
-        if (b4 == EOF) {      // if three characters remain at the end of input
+        if (input_4 == EOF) {      // if three characters remain at the end of input
 
-            b4 = '\0';      // input is completed with 1 byte
+            input_4 = '\0';      // input is completed with 1 byte
 
-            ch1 = b1 * (int) pow(256, 3);
-            ch2 = b2 * (int) pow(256, 2);
-            ch3 = b3 * 256;
-            ch4 = b4;
-
-            aprosim = ch1 + ch2 + ch3 + ch4;
+            aprosim = calculateUnsingedInteger(
+                    &input_1,
+                    &input_2,
+                    &input_3,
+                    &input_4);
 
             changeByte(&aprosim, &byte1);
             changeByte(&aprosim, &byte2);
@@ -121,13 +131,11 @@ int main(void) {
             break;
         }
 
-
-        ch1 = b1 * (int) pow(256, 3);
-        ch2 = b2 * (int) pow(256, 2);
-        ch3 = b3 * 256;
-        ch4 = b4;
-
-        aprosim = ch1 + ch2 + ch3 + ch4;
+        aprosim = calculateUnsingedInteger(
+                &input_1,
+                &input_2,
+                &input_3,
+                &input_4);
 
         changeByte(&aprosim, &byte1);
         changeByte(&aprosim, &byte2);

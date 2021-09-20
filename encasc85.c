@@ -5,16 +5,16 @@
 #define STEP 33
 #define SPACE 50
 
-void changeByte(unsigned int* aprosim, int* byte) {
+void changeByte(unsigned int *aprosim, int *byte) {
     *byte = (int) *aprosim % CALC_OFFSET;
     *byte += STEP;
     *aprosim /= CALC_OFFSET;
 }
 
 void checkForNewLine(int *newl) {
-    if ((*newl) == SPACE) {
+    if (*newl == SPACE) {
         printf("\n");
-        (*newl) = 0;
+        *newl = 0;
     }
 }
 
@@ -30,7 +30,7 @@ int main(void) {
     int byte1 = 0, byte2 = 0, byte3 = 0, byte4 = 0, byte5 = 0;
     int b1, b2, b3, b4;
     int ch1, ch2, ch3, ch4;
-    static int newl = 0;                      // newl holds 50 characters until a new line
+    int newl = 0;                      // newl holds 50 characters until a new line
 
     printf("<~\n");
 
@@ -42,12 +42,12 @@ int main(void) {
         b3 = getchar();
         b4 = getchar();
 
+
         if (b1 == '\0' && b2 == '\0' && b3 == '\0' && b4 == '\0') {
             putchar('z');
             newl++;
         }
 
-        checkForNewLine(&newl);
 
         if (b2 == EOF) {        // if one character remains at the end of input
 
@@ -55,8 +55,8 @@ int main(void) {
             b3 = '\0';      // input is completed with 3 bytes
             b4 = '\0';
 
-            ch1 = b1 * pow(256, 3);
-            ch2 = b2 * pow(256, 2);
+            ch1 = b1 * (int) pow(256, 3);
+            ch2 = b2 * (int) pow(256, 2);
             ch3 = b3 * 256;
             ch4 = b4;
 
@@ -78,8 +78,8 @@ int main(void) {
             b3 = '\0';
             b4 = '\0';      // input is completed with 2 bytes
 
-            ch1 = b1 * pow(256, 3);
-            ch2 = b2 * pow(256, 2);
+            ch1 = b1 * (int) pow(256, 3);
+            ch2 = b2 * (int) pow(256, 2);
             ch3 = b3 * 256;
             ch4 = b4;
 
@@ -101,8 +101,8 @@ int main(void) {
 
             b4 = '\0';      // input is completed with 1 byte
 
-            ch1 = b1 * pow(256, 3);
-            ch2 = b2 * pow(256, 2);
+            ch1 = b1 * (int) pow(256, 3);
+            ch2 = b2 * (int) pow(256, 2);
             ch3 = b3 * 256;
             ch4 = b4;
 
@@ -122,8 +122,8 @@ int main(void) {
         }
 
 
-        ch1 = b1 * pow(256, 3);
-        ch2 = b2 * pow(256, 2);
+        ch1 = b1 * (int) pow(256, 3);
+        ch2 = b2 * (int) pow(256, 2);
         ch3 = b3 * 256;
         ch4 = b4;
 

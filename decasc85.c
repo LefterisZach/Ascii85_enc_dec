@@ -31,6 +31,12 @@ void decodeBytes(
 
 }
 
+int getCharAndOmitWhitespace() {
+    int character;
+    while (isspace(character = getchar()));
+    return character;
+}
+
 void printBytes(int ch1, int ch2, int ch3, int ch4) {
     putchar(ch1);
     putchar(ch2);
@@ -65,9 +71,7 @@ int main(void) {
 
     while (1) {
 
-        byte1 = getchar();
-        if (byte1 == ' ' || byte1 == '\t' || byte1 == '\n')
-            continue;    //ignoring whitespace
+        byte1 = getCharAndOmitWhitespace();
 
         if (byte1 == 'z') {
             byte1 = '!';
@@ -90,33 +94,10 @@ int main(void) {
             continue;
         }
 
-        byte2 = getchar();
-        if (byte2 == ' ' || byte2 == '\t' || byte2 == '\n') {
-            do {
-                byte2 = getchar();
-            } while (byte2 == ' ' || byte2 == '\t' || byte2 == '\n');
-        }
-
-        byte3 = getchar();
-        if (byte3 == ' ' || byte3 == '\t' || byte3 == '\n') {
-            do {
-                byte3 = getchar();
-            } while (byte3 == ' ' || byte3 == '\t' || byte3 == '\n');
-        }
-
-        byte4 = getchar();
-        if (byte4 == ' ' || byte4 == '\t' || byte4 == '\n') {
-            do {
-                byte4 = getchar();
-            } while (byte4 == ' ' || byte4 == '\t' || byte4 == '\n');
-        }
-
-        byte5 = getchar();
-        if (byte5 == ' ' || byte5 == '\t' || byte5 == '\n') {
-            do {
-                byte5 = getchar();
-            } while (byte5 == ' ' || byte5 == '\t' || byte5 == '\n');
-        }
+        byte2 = getCharAndOmitWhitespace();
+        byte3 = getCharAndOmitWhitespace();
+        byte4 = getCharAndOmitWhitespace();
+        byte5 = getCharAndOmitWhitespace();
 
         if (byte1 == EOF || byte2 == EOF || byte3 == EOF || byte4 == EOF || byte5 == EOF) {
             printf("\tBad end\n");                              // case of not ending with '~'
@@ -235,9 +216,7 @@ int main(void) {
         exit(0);
     } else
         do {
-            f2 = getchar();
-            if (f2 == ' ' || f2 == '\t' || f2 == '\n')     //ignoring whitespace
-                continue;
+            f2 = getCharAndOmitWhitespace();
         } while (f2 != EOF);
 
     return 0;

@@ -15,6 +15,18 @@ void decodeApprosim(
                 (*byte3 * (int) pow(85, 2)) + (*byte4 * 85) + (*byte5));
 }
 
+void deductStep(
+        int *byte1, int *byte2,
+        int *byte3, int *byte4,
+        int *byte5
+) {
+    *byte1 -= MIN;
+    *byte2 -= MIN;
+    *byte3 -= MIN;
+    *byte4 -= MIN;
+    *byte5 -= MIN;
+}
+
 void decodeBytes(
         int *byte1, int *byte2,
         int *byte3, int *byte4,
@@ -80,11 +92,7 @@ int main(void) {
             byte4 = '!';
             byte5 = '!';
 
-            byte1 -= 33;
-            byte2 -= 33;
-            byte3 -= 33;
-            byte4 -= 33;
-            byte5 -= 33;
+            deductStep(&byte1, &byte2, &byte3, &byte4, &byte5);
 
             decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
@@ -131,11 +139,7 @@ int main(void) {
             byte4 = 'u';      // input is completed with 5-2 bytes
             byte5 = 'u';
 
-            byte1 -= 33;
-            byte2 -= 33;
-            byte3 -= 33;
-            byte4 -= 33;
-            byte5 -= 33;
+            deductStep(&byte1, &byte2, &byte3, &byte4, &byte5);
 
             decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
@@ -151,11 +155,7 @@ int main(void) {
             byte4 = 'u';
             byte5 = 'u';    // input is completed with 5-3 bytes
 
-            byte1 -= 33;
-            byte2 -= 33;
-            byte3 -= 33;
-            byte4 -= 33;
-            byte5 -= 33;
+            deductStep(&byte1, &byte2, &byte3, &byte4, &byte5);
 
             decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
@@ -171,11 +171,7 @@ int main(void) {
 
             byte5 = 'u';      // input is completed with 5-4 bytes
 
-            byte1 -= 33;
-            byte2 -= 33;
-            byte3 -= 33;
-            byte4 -= 33;
-            byte5 -= 33;
+            deductStep(&byte1, &byte2, &byte3, &byte4, &byte5);
 
             decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
@@ -187,11 +183,7 @@ int main(void) {
             break;
         }
 
-        byte1 -= 33;
-        byte2 -= 33;
-        byte3 -= 33;
-        byte4 -= 33;
-        byte5 -= 33;
+        deductStep(&byte1, &byte2, &byte3, &byte4, &byte5);
 
         decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 

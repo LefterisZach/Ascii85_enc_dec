@@ -1,10 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
 
 #define MAX 117
 #define MIN 33
 
+
+void decodeApprosim(
+        const int *byte1, const int *byte2, const int *byte3,
+        const int *byte4, const int *byte5, unsigned int *aprosim
+) {
+    *aprosim = (*byte1 * (int) pow(85, 4) + (*byte2 * (int) pow(85, 3)) +
+                (*byte3 * (int) pow(85, 2)) + (*byte4 * 85) + (*byte5));
+}
+
+void decodeBytes(
+        int *byte1, int *byte2,
+        int *byte3, int *byte4,
+        unsigned int *aprosim
+) {
+
+    *byte1 = *aprosim / (int) pow(256, 3);
+    *aprosim = *aprosim % (int) pow(256, 3);
+    *byte2 = *aprosim / (int) pow(256, 2);
+    *aprosim = *aprosim % (int) pow(256, 2);
+    *byte3 = *aprosim / 256;
+    *aprosim = *aprosim % 256;
+    *byte4 = *aprosim;
+
+}
+
+void printBytes(int ch1, int ch2, int ch3, int ch4) {
+    putchar(ch1);
+    putchar(ch2);
+    putchar(ch3);
+    putchar(ch4);
+}
 
 int main(void) {
 
@@ -50,20 +82,11 @@ int main(void) {
             byte4 -= 33;
             byte5 -= 33;
 
-            aprosim = (byte1 * 85 * 85 * 85 * 85) + (byte2 * 85 * 85 * 85) + (byte3 * 85 * 85) + (byte4 * 85) + byte5;
+            decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
-            ch1 = aprosim / (256 * 256 * 256);
-            aprosim = aprosim % (256 * 256 * 256);
-            ch2 = aprosim / (256 * 256);
-            aprosim = aprosim % (256 * 256);
-            ch3 = aprosim / 256;
-            aprosim = aprosim % 256;
-            ch4 = aprosim;
+            decodeBytes(&ch1, &ch2, &ch3, &ch4, &aprosim);
 
-            putchar(ch1);
-            putchar(ch2);
-            putchar(ch3);
-            putchar(ch4);
+            printBytes(ch1, ch2, ch3, ch4);
             continue;
         }
 
@@ -133,15 +156,9 @@ int main(void) {
             byte4 -= 33;
             byte5 -= 33;
 
-            aprosim = (byte1 * 85 * 85 * 85 * 85) + (byte2 * 85 * 85 * 85) + (byte3 * 85 * 85) + (byte4 * 85) + byte5;
+            decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
-            ch1 = aprosim / (256 * 256 * 256);
-            aprosim = aprosim % (256 * 256 * 256);
-            ch2 = aprosim / (256 * 256);
-            aprosim = aprosim % (256 * 256);
-            ch3 = aprosim / 256;
-            aprosim = aprosim % 256;
-            ch4 = aprosim;
+            decodeBytes(&ch1, &ch2, &ch3, &ch4, &aprosim);
 
             putchar(ch1);
             break;
@@ -159,15 +176,9 @@ int main(void) {
             byte4 -= 33;
             byte5 -= 33;
 
-            aprosim = (byte1 * 85 * 85 * 85 * 85) + (byte2 * 85 * 85 * 85) + (byte3 * 85 * 85) + (byte4 * 85) + byte5;
+            decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
-            ch1 = aprosim / (256 * 256 * 256);
-            aprosim = aprosim % (256 * 256 * 256);
-            ch2 = aprosim / (256 * 256);
-            aprosim = aprosim % (256 * 256);
-            ch3 = aprosim / 256;
-            aprosim = aprosim % 256;
-            ch4 = aprosim;
+            decodeBytes(&ch1, &ch2, &ch3, &ch4, &aprosim);
 
             putchar(ch1);
             putchar(ch2);
@@ -185,15 +196,9 @@ int main(void) {
             byte4 -= 33;
             byte5 -= 33;
 
-            aprosim = (byte1 * 85 * 85 * 85 * 85) + (byte2 * 85 * 85 * 85) + (byte3 * 85 * 85) + (byte4 * 85) + byte5;
+            decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
-            ch1 = aprosim / (256 * 256 * 256);
-            aprosim = aprosim % (256 * 256 * 256);
-            ch2 = aprosim / (256 * 256);
-            aprosim = aprosim % (256 * 256);
-            ch3 = aprosim / 256;
-            aprosim = aprosim % 256;
-            ch4 = aprosim;
+            decodeBytes(&ch1, &ch2, &ch3, &ch4, &aprosim);
 
             putchar(ch1);
             putchar(ch2);
@@ -207,20 +212,11 @@ int main(void) {
         byte4 -= 33;
         byte5 -= 33;
 
-        aprosim = (byte1 * 85 * 85 * 85 * 85) + (byte2 * 85 * 85 * 85) + (byte3 * 85 * 85) + (byte4 * 85) + byte5;
+        decodeApprosim(&byte1, &byte2, &byte3, &byte4, &byte5, &aprosim);
 
-        ch1 = aprosim / (256 * 256 * 256);
-        aprosim = aprosim % (256 * 256 * 256);
-        ch2 = aprosim / (256 * 256);
-        aprosim = aprosim % (256 * 256);
-        ch3 = aprosim / 256;
-        aprosim = aprosim % 256;
-        ch4 = aprosim;
+        decodeBytes(&ch1, &ch2, &ch3, &ch4, &aprosim);
 
-        putchar(ch1);
-        putchar(ch2);
-        putchar(ch3);
-        putchar(ch4);
+        printBytes(ch1, ch2, ch3, ch4);
 
     }
 

@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <math.h>
+//#include <ctype.h>
 
 #define CALC_OFFSET 85
 #define STEP 33
 #define SPACE 50
+
 
 void changeByte(unsigned int *aprosim, int *byte) {
     *byte = (int) *aprosim % CALC_OFFSET;
@@ -38,11 +40,19 @@ unsigned int calculateUnsingedInteger(
     return ch1 + ch2 + ch3 + ch4;
 }
 
+//int getCharAndOmitWhitespace() {
+//    int character;
+//    while (isspace(character = getchar()));
+//    return character;
+//}
+
 int main(void) {
 
     unsigned int aprosim = 0;
     int input_1, input_2, input_3, input_4;
     int byte1 = 0, byte2 = 0, byte3 = 0, byte4 = 0, byte5 = 0;
+//    char t1,t2,t3,t4;
+//    char c1,c2,c3,c4,c5;
     int newl = 0;                      // newl holds 50 characters until a new line
 
     printf("<~\n");
@@ -52,6 +62,13 @@ int main(void) {
         input_2 = getchar();
         input_3 = getchar();
         input_4 = getchar();
+
+//    Debugging
+//        t1 = (char) input_1;
+//        t2 = (char) input_2;
+//        t3 = (char) input_3;
+//        t4 = (char) input_4;
+//  Breakpoint here
 
         if (input_1 == '\0' && input_2 == '\0' && input_3 == '\0' && input_4 == '\0') {
             putchar('z');
@@ -74,14 +91,16 @@ int main(void) {
                     &input_3,
                     &input_4);
 
-            changeByte(&aprosim, &byte1);
-            changeByte(&aprosim, &byte2);
-            changeByte(&aprosim, &byte3);
-            changeByte(&aprosim, &byte4);
             changeByte(&aprosim, &byte5);
+            changeByte(&aprosim, &byte4);
+            changeByte(&aprosim, &byte3);
+            changeByte(&aprosim, &byte2);
+            changeByte(&aprosim, &byte1);
 
-            printByteAndCheck(&byte5, &newl);
-            printByteAndCheck(&byte4, &newl);
+            checkForNewLine(&newl);
+
+            printByteAndCheck(&byte1, &newl);
+            printByteAndCheck(&byte2, &newl);
             break;
         }
 
@@ -91,19 +110,19 @@ int main(void) {
             input_4 = '\0';      // input is completed with 2 bytes
 
             aprosim = calculateUnsingedInteger(
-                    &input_1,
-                    &input_2,
-                    &input_3,
-                    &input_4);
+                    &input_1, &input_2, &input_3, &input_4
+                    );
 
-            changeByte(&aprosim, &byte1);
-            changeByte(&aprosim, &byte2);
-            changeByte(&aprosim, &byte3);
-            changeByte(&aprosim, &byte4);
             changeByte(&aprosim, &byte5);
+            changeByte(&aprosim, &byte4);
+            changeByte(&aprosim, &byte3);
+            changeByte(&aprosim, &byte2);
+            changeByte(&aprosim, &byte1);
 
-            printByteAndCheck(&byte5, &newl);
-            printByteAndCheck(&byte4, &newl);
+            checkForNewLine(&newl);
+
+            printByteAndCheck(&byte1, &newl);
+            printByteAndCheck(&byte2, &newl);
             printByteAndCheck(&byte3, &newl);
             break;
         }
@@ -118,16 +137,18 @@ int main(void) {
                     &input_3,
                     &input_4);
 
-            changeByte(&aprosim, &byte1);
-            changeByte(&aprosim, &byte2);
-            changeByte(&aprosim, &byte3);
-            changeByte(&aprosim, &byte4);
             changeByte(&aprosim, &byte5);
+            changeByte(&aprosim, &byte4);
+            changeByte(&aprosim, &byte3);
+            changeByte(&aprosim, &byte2);
+            changeByte(&aprosim, &byte1);
 
-            printByteAndCheck(&byte5, &newl);
-            printByteAndCheck(&byte4, &newl);
-            printByteAndCheck(&byte3, &newl);
+            checkForNewLine(&newl);
+
+            printByteAndCheck(&byte1, &newl);
             printByteAndCheck(&byte2, &newl);
+            printByteAndCheck(&byte3, &newl);
+            printByteAndCheck(&byte4, &newl);
             break;
         }
 
@@ -137,22 +158,29 @@ int main(void) {
                 &input_3,
                 &input_4);
 
-        changeByte(&aprosim, &byte1);
-        changeByte(&aprosim, &byte2);
-        changeByte(&aprosim, &byte3);
-        changeByte(&aprosim, &byte4);
         changeByte(&aprosim, &byte5);
+        changeByte(&aprosim, &byte4);
+        changeByte(&aprosim, &byte3);
+        changeByte(&aprosim, &byte2);
+        changeByte(&aprosim, &byte1);
+
+//        Debugging
+//        c1 = (char) byte1;
+//        c2 = (char) byte2;
+//        c3 = (char) byte3;
+//        c4 = (char) byte4;
+//        c5 = (char) byte5;
 
         checkForNewLine(&newl);
 
         if (byte5 == '!' && byte4 == '!' && byte3 == '!' && byte2 == '!' && byte1 == '!')
             continue;
 
-        printByteAndCheck(&byte5, &newl);
-        printByteAndCheck(&byte4, &newl);
-        printByteAndCheck(&byte3, &newl);
-        printByteAndCheck(&byte2, &newl);
         printByteAndCheck(&byte1, &newl);
+        printByteAndCheck(&byte2, &newl);
+        printByteAndCheck(&byte3, &newl);
+        printByteAndCheck(&byte4, &newl);
+        printByteAndCheck(&byte5, &newl);
     }
 
     printf("\n~>\n");
